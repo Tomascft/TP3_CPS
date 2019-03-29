@@ -1,7 +1,7 @@
 #include "bit_operations.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
+
 
 #define TAILLE_BUFFER 128
 
@@ -22,7 +22,7 @@ int main()
   char buffer[TAILLE_BUFFER];
   int commande;
   int nombre, i;
-  int32_t toto=0;
+  int32_t toto=8;
 
   aide();
   while (1)
