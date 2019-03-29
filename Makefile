@@ -1,17 +1,23 @@
-all : bitabit
+all : bitabit bit_operations test_read test_write generate_sequence
 
 OPTIONS = -Wall -Werror
 
 
-bitabit : bitabit.o bit_operations.o
-	gcc $(OPTIONS) -o $@ bitabit.o bit_operations.o
+bitabit : bitabit.o
+	gcc $(OPTIONS) -o $@ $<
 
+bit_operations : bit_operations.o
+	gcc $(OPTIONS) -o $@ $<
 
-bitabit.o: bitabit.c bit_operations.h
-	gcc $(OPTIONS) -c bitabit.c
+test_read: test_read.o
+	gcc $(OPTIONS) -o $@ $<
 
-bit_operations.o: bit_operations.c bit_operations.h
-	gcc $(OPTIONS) -c bit_operations.c
+test_write : test_write.o
+	gcc $(OPTIONS) -o $@ $<
 
-clean:
-	rm -f *.o bitabit
+generate_sequence : generate_sequence.o
+	gcc $(OPTIONS) -o $@ $<
+
+%.o : %.c bit_operations.h bfile.h
+	gcc $(OPTIONS) -c $<
+
